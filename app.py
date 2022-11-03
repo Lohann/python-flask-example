@@ -4,6 +4,7 @@ import os
 app = Flask(__name__)
 port = os.environ.get("APP_PORT")
 print(port)
+count = 0
 
 @app.route('/health')
 def health():
@@ -12,6 +13,12 @@ def health():
 @app.route("/")
 def hello_world():
     return "ola mundo"
+
+@app.route("/counter")
+def counter():
+    global count
+    count += 1
+    return str(count)
 
 
 if __name__ == "__main__":
